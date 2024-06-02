@@ -108,7 +108,21 @@ export function* verify({ payload }) {
   }
 }
 
+export function* pageRole(payload) {
+  try {
+    yield put(actions.updateAuthLoading(true));
+    yield put(actions.updateNavModel({ response: payload }));
+    yield put(actions.updateAuthLoading(false));
+  } catch (err) {
+    error(err.message);
+    yield put(actions.updateAuthLoading(false));
+  } finally {
+    yield put(actions.updateAuthLoading(false));
+  }
+}
+
 export function* watchUserSagas() {
+  yield takeLatest(actions.changeNavDilog.type, pageRole);
   yield takeLatest(actions.registerUser.type, register);
   yield takeLatest(actions.authorizeUser.type, user);
   yield takeLatest(actions.userVerification.type, verify);

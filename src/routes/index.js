@@ -1,3 +1,4 @@
+import HomePage from "../components/chatComponents/HomePage";
 import { UserLogin } from "../components/userComponents";
 import { UserSignup } from "../components/userComponents";
 import UserVerify from "../components/userComponents/UserVerify";
@@ -37,10 +38,10 @@ const profileRoutes = [
 ];
 
 const layoutRoutes = [
-  // {
-  //   path: "/expense",
-  //   component: HomePage,
-  // },
+  {
+    path: "/chat",
+    component: HomePage,
+  },
 ];
 
 export { userRoutes, profileRoutes, layoutRoutes };
