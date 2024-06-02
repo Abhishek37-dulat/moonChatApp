@@ -1,18 +1,20 @@
+import { UserLogin } from "../components/userComponents";
 import { UserSignup } from "../components/userComponents";
+import UserVerify from "../components/userComponents/UserVerify";
 
 const userRoutes = [
-  // {
-  //   path: "/login",
-  //   component: UserLogin,
-  // },
+  {
+    path: "/login",
+    component: UserLogin,
+  },
   {
     path: "/signup",
     component: UserSignup,
   },
-  // {
-  //   path: "/user/verify/:id",
-  //   component: UserVerify,
-  // },
+  {
+    path: "/user/verify/:id",
+    component: UserVerify,
+  },
   // {
   //   path: "/forgotpassward",
   //   component: ForgotPassword,

@@ -11,3 +11,19 @@ export const SignUp = async (data) => {
     return error.response;
   }
 };
+
+export const SignIn = async (data) => {
+  try {
+    return await axios.post(`${urls.auth.login}`, { ...data.data });
+  } catch (error) {
+    return error.response;
+  }
+};
+
+export const VerifyMe = async (data) => {
+  try {
+    return await axios.patch(`${urls.auth.verify}/${data.id}`);
+  } catch (error) {
+    return error.response;
+  }
+};
