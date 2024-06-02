@@ -236,7 +236,7 @@ const NavBar = () => {
           {!searchCondition ? (
             <React.Fragment>
               <LandingLogoBox>
-                <Typography onClick={() => navigate("/expense")}>
+                <Typography onClick={() => navigate("/chat")}>
                   MOONCHATAPP
                 </Typography>
                 <Box></Box>

@@ -18,7 +18,7 @@ const Index = () => {
     if (path.includes("profile")) {
       dispatch(changeNavDilog("TYPE_PROFILE"));
     }
-    if (path.includes("expense")) {
+    if (path.includes("chat")) {
       dispatch(changeNavDilog("TYPE_LANDING"));
     }
   }, [dispatch]);
@@ -31,14 +31,14 @@ const Index = () => {
     if (expenseLog) {
       const path = window.location.pathname;
       if (path.includes("login")) {
-        navigate("/expense");
+        navigate("/chat");
       }
     }
   }, [expenseLog, navigate]);
 
   return (
     <Routes>
-      <Route path="/" element={<Navigate to="/expense" replace />} />
+      <Route path="/" element={<Navigate to="/chat" replace />} />
       {[...layoutRoutes, ...profileRoutes].map((route, index) => (
         <Route
           key={index}
