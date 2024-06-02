@@ -26,7 +26,7 @@ const LoginBox = styled(Box)(({ theme }) => ({
   justifyContent: "flex-start",
   alignItems: "center",
   width: "698px",
-  height: "616px",
+  height: "max-content",
   marginTop: "20px",
   borderRadius: "8px",
   boxShadow: "0px 10px 23px rgba(0,0,0,0.3)",
@@ -132,6 +132,7 @@ const UserSignup = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [emailValue, setEmailValue] = useState("");
+  const [phoneValue, setPhoneValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
   const [confirmPasswordValue, setConfirmPasswordValue] = useState("");
   const [validationCondition, setValidationCondition] = useState(false);
@@ -140,12 +141,23 @@ const UserSignup = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setValidationCondition(true);
+    let ph_valid = true;
+    if (phoneValue.length !== 10) {
+      ph_valid = false;
+      error("enter valid phone number");
+      if (typeof parseInt(phoneValue) !== "number") {
+        ph_valid = false;
+        error("enter valid phone number");
+      }
+    }
+
     if (
       firstName === "" ||
       lastName === "" ||
       emailValue === "" ||
       passwordValue === "" ||
-      confirmPasswordValue === ""
+      confirmPasswordValue === "" ||
+      phoneValue === ""
     ) {
       error("all fields are required!");
     } else if (passwordValue !== confirmPasswordValue) {
@@ -157,7 +169,9 @@ const UserSignup = () => {
           lastName !== "" &&
           emailValue !== "" &&
           passwordValue !== "" &&
-          confirmPasswordValue !== ""
+          confirmPasswordValue !== "" &&
+          phoneValue !== "" &&
+          ph_valid === true
         ) {
           dispatch(
             registerUser({
@@ -166,6 +180,7 @@ const UserSignup = () => {
                 last_name: lastName,
                 email: emailValue,
                 password: passwordValue,
+                phone_number: phoneValue,
               },
             })
           );
@@ -221,6 +236,15 @@ const UserSignup = () => {
             type="text"
             placeHolderValue="Enter Email address or username"
             errorMessage="Please enter valid email address"
+            validationCondition={validationCondition}
+          />
+          <InputBox
+            inputValue={phoneValue}
+            setInputValue={setPhoneValue}
+            title="Phone number"
+            type="text"
+            placeHolderValue="Enter phone number"
+            errorMessage="Please enter valid phone number"
             validationCondition={validationCondition}
           />
           <TwoBoxs>
