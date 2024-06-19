@@ -2,7 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const INITIAL_STATE = {
   loginResponse: null,
+  alluserData: [],
+  searchUser: [],
   userProfile: null,
+  registerUserStatus: false,
   currentNavModel: "",
   userIncome: 0,
   verifyEmail: "",
@@ -43,10 +46,19 @@ const userSlice = createSlice({
     getUserIncome: (state) => state,
     updateUserIncome: (state) => state,
     changeNavDilog: (state) => state,
+    allusers: (state) => state,
+    reqSearch: (state) => state,
+    reqProfileUpdate: (state) => state,
     updateAuthSuccessStatus(state, { payload }) {
       return {
         ...state,
         isSuccess: payload,
+      };
+    },
+    getSearch(state, { payload }) {
+      return {
+        ...state,
+        searchUser: payload.response,
       };
     },
     updateAuthLoading(state, { payload }) {
@@ -94,11 +106,26 @@ const userSlice = createSlice({
     isUserVerified(state, { payload }) {
       return { ...state, isVerified: payload.response };
     },
+    getAllUserData(state, { payload }) {
+      return { ...state, alluserData: payload.response };
+    },
     userLogout(state) {
       return {
         ...state,
         loginResponse: null,
+        alluserData: [],
+        searchUser: [],
         userProfile: null,
+        registerUserStatus: false,
+        currentNavModel: "",
+        userIncome: 0,
+        verifyEmail: "",
+        passwordResetSuccess: false,
+        afterSignup: false,
+        passwordChangeStatus: false,
+        isVerified: false,
+        isSuccess: false,
+        isLoading: false,
       };
     },
   },
@@ -130,6 +157,11 @@ export const {
   resetInitialPasswordState,
   handlePasswordChangeStatus,
   changePasswordStatus,
+  allusers,
+  getAllUserData,
+  getSearch,
+  reqSearch,
+  reqProfileUpdate,
 } = userSlice.actions;
 
 export default userSlice.reducer;

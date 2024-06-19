@@ -7,6 +7,7 @@ import {
 } from "../../redux/reducers/ducks/UsersDuck";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import SocketProvider from "../../context/SocketContext";
 
 const Index = () => {
   const dispatch = useDispatch();
@@ -37,18 +38,20 @@ const Index = () => {
   }, [expenseLog, navigate]);
 
   return (
-    <Routes>
-      <Route path="/" element={<Navigate to="/chat" replace />} />
-      {[...layoutRoutes, ...profileRoutes].map((route, index) => (
-        <Route
-          key={index}
-          exact
-          path={route.path}
-          element={<route.component />}
-        />
-      ))}
-      <Route path="*" element={<Missing />} />
-    </Routes>
+    <SocketProvider>
+      <Routes>
+        <Route path="/" element={<Navigate to="/chat" replace />} />
+        {[...layoutRoutes, ...profileRoutes].map((route, index) => (
+          <Route
+            key={index}
+            exact
+            path={route.path}
+            element={<route.component />}
+          />
+        ))}
+        <Route path="*" element={<Missing />} />
+      </Routes>
+    </SocketProvider>
   );
 };
 

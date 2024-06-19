@@ -222,7 +222,12 @@ const NavBar = () => {
   }, [dispatch, navrole, navigate]);
   console.log(searchCondition, searchValue);
   return (
-    <MainBox sx={{ height: `${navrole === "TYPE_AUTH" ? "100px" : "100px"}` }}>
+    <MainBox
+      sx={{
+        height: `${navrole === "TYPE_AUTH" ? "100px" : "0px"}`,
+        display: `${navrole !== "TYPE_AUTH" && "none"}`,
+      }}
+    >
       {navrole === "TYPE_AUTH" && (
         <LoginBox>
           <LogoBox>
@@ -230,57 +235,6 @@ const NavBar = () => {
             <Box></Box>
           </LogoBox>
         </LoginBox>
-      )}
-      {navrole === "TYPE_LANDING" && (
-        <LandingPage>
-          {!searchCondition ? (
-            <React.Fragment>
-              <LandingLogoBox>
-                <Typography onClick={() => navigate("/chat")}>
-                  MOONCHATAPP
-                </Typography>
-                <Box></Box>
-              </LandingLogoBox>
-              <LandingUserBox>
-                <Item2></Item2>
-                <Item1>
-                  <Box>
-                    <img src={menuimg} alt="menuimg" />
-                  </Box>
-                  <Box>
-                    <Box onClick={() => navigate("/profile")}>
-                      <Typography>
-                        {userData?.first_name?.slice(0, 1)}
-                      </Typography>
-                    </Box>
-                  </Box>
-                </Item1>
-              </LandingUserBox>
-            </React.Fragment>
-          ) : (
-            <SearchBox></SearchBox>
-          )}
-        </LandingPage>
-      )}
-      {navrole === "TYPE_PROFILE" && (
-        <LandingPage>
-          <React.Fragment>
-            <LandingLogoBox>
-              <Typography onClick={() => navigate("/expense")}>
-                MOONCHATAPP
-              </Typography>
-              <Box></Box>
-            </LandingLogoBox>
-            <LandingUserBox>
-              <Item2 onClick={() => handleLogout()}>
-                <IconButton sx={{ borderRadius: "0px" }}>
-                  <Typography>Logout</Typography>
-                  <LogoutRoundedIcon />
-                </IconButton>
-              </Item2>
-            </LandingUserBox>
-          </React.Fragment>
-        </LandingPage>
       )}
     </MainBox>
   );
