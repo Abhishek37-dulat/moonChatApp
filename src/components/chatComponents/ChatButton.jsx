@@ -1,6 +1,7 @@
 import { Box, IconButton, Typography, styled } from "@mui/material";
 import React, { useState } from "react";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
+import ReciverDesign from "./messageScreen/ReciverDesign";
 
 const MainBox = styled(Box)(({ theme }) => ({
   // border: "1px solid black",

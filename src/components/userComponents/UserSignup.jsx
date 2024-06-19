@@ -193,11 +193,11 @@ const UserSignup = () => {
     }
   };
 
-  // useEffect(() => {
-  //   if (underprocess) {
-  //     navigate("/underprocess");
-  //   }
-  // }, [underprocess, navigate]);
+  useEffect(() => {
+    if (underprocess) {
+      navigate("/underprocess");
+    }
+  }, [underprocess, navigate]);
   // console.log(underprocess);
   return (
     <MainBox>

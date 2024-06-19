@@ -52,6 +52,7 @@ const customTheme = createTheme({
   },
   typography: {
     fontFamily: '"Poppins", sans-serif',
+    fontWeight: "100",
   },
 });
 
